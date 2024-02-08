@@ -51,9 +51,9 @@ def create_dir_hook(spawner):
        os.chown(home_path, 1000, 1000)  # Same UID/GID as in local machine
 
 c.Spawner.pre_spawn_hook = create_dir_hook
-notebook_dir = os.environ.get('DOCKER_NOTEBOOK_DIR') or '/home/jovyan/work'
+notebook_dir = os.environ.get('DOCKER_NOTEBOOK_DIR') 
 c.DockerSpawner.notebook_dir = notebook_dir
-c.DockerSpawner.volumes = {'/home/aifuser/jupyterhub/{username}': '/home/jovyan/work'}
+c.DockerSpawner.volumes = {'./jupyterhub-data/{username}': notebook_dir}
 
 ###
 JupyterHub的設定與使用者資料會存在/persist下，以免JupyterHub重啟後全部消失。
