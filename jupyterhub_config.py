@@ -3,7 +3,9 @@ import sys
 import shutil
 
 c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
-c.DockerSpawner.network_name = os.environ['DOCKER_NETWORK_NAME']
+
+# 在 jupyterhub_config.py 中
+c.DockerSpawner.network_name = 'jupyter_hub_network'
 
 c.DockerSpawner.allowed_images = {
     "tensorflow-gpu (Tensorflow 2.8)": "tensorflow-notebook:latest",
@@ -41,17 +43,17 @@ c.MappingKernelManager.cull_interval = 2 * 60
 
 
 # 設定建立新使用者的家目錄，並且與docker外的本機目錄連結，家目錄的owner ID/group ID需要與本機的user ID/group ID相同，否則會發生無法編輯的錯誤。
-
 def create_dir_hook(spawner):
-   """ Create directory """
-   username = spawner.user.name  # get the username
-   home_path = os.path.join('/persist/', username)
-   if not os.path.exists(home_path):
-       os.mkdir(home_path)
-       os.chown(home_path, 1000, 1000)  # Same UID/GID as in local machine
+    """ Create directory """
+    username = spawner.user.name  # get the username
+    home_path = os.path.join('/persist/', username)
+    if not os.path.exists(home_path):
+        os.mkdir(home_path)
+        os.chown(home_path, 1000, 1000)  # Same UID/GID as in local machine
 
 c.Spawner.pre_spawn_hook = create_dir_hook
-c.DockerSpawner.notebook_dir = os.environ.get('DOCKER_NOTEBOOK_DIR', '/home/jovyan/work')
+notebook_dir = os.environ.get('DOCKER_NOTEBOOK_DIR') or '/home/jovyan/work'
+c.DockerSpawner.notebook_dir = notebook_dir
 c.DockerSpawner.volumes = {'/home/chiu/jupyter_hub/jupyterhub-data/{username}':  '/home/jovyan/work'}
 
 

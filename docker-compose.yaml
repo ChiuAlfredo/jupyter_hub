@@ -21,3 +21,7 @@ services:
     
 volumes:
   jupyterhub_data:
+
+networks:
+  jupyter_hub_network:
+    driver: bridge
