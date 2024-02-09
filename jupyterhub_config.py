@@ -52,8 +52,7 @@ def create_dir_hook(spawner):
        os.chown(home_path, 1000, 1000)  # Same UID/GID as in local machine
 
 c.Spawner.pre_spawn_hook = create_dir_hook
-notebook_dir = os.environ.get('DOCKER_NOTEBOOK_DIR') 
-c.DockerSpawner.notebook_dir = notebook_dir
+c.DockerSpawner.notebook_dir = os.environ.get('DOCKER_NOTEBOOK_DIR', '/home/jovyan/work')
 c.DockerSpawner.volumes = {'./jupyterhub-data/{username}':  '/home/jovyan/work'}
 
 
