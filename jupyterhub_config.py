@@ -2,32 +2,18 @@ import os
 import sys
 import shutil
 
-docker_personal_network_folder=os.environ.get('DOCKER_PERSONAL_NETWORK_FOLDER')
-docker_shared_network_folder=os.environ.get('DOCKER_SHARED_NETWORK_FOLDER')
-host_personal_network_folder=os.environ.get('HOST_PERSONAL_NETWORK_FOLDER')
-host_shared_network_folder=os.environ.get('HOST_SHARED_NETWORK_FOLDER')
-
 c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
 c.DockerSpawner.network_name = os.environ['DOCKER_NETWORK_NAME']
 
-# Spawn containers from this image
-c.DockerSpawner.container_image = os.environ['DOCKER_NOTEBOOK_IMAGE']
-
-# Connect containers to this Docker network
-network_name = os.environ['DOCKER_NETWORK_NAME']
-c.DockerSpawner.use_internal_ip = True
-c.DockerSpawner.network_name = network_name
+c.DockerSpawner.allowed_images = {
+    "tensorflow-cpu": "tensorflow-notebook",
+    "tensorflow-gpu (Tensorflow 2.8)": "tensorflow-notebook",
+    "pytorch-gpu (Pytorch 1.10)": "pytorch-notebook"
+}
+c.DockerSpawner.remove_containers = True
 c.DockerSpawner.extra_host_config = {'runtime': 'nvidia'}
 c.Spawner.environment = {'GRANT_SUDO': 'yes'}
 c.Spawner.default_url = '/lab'
-
-
-# c.DockerSpawner.allowed_images = {
-#     "tensorflow-cpu": "tensorflow-notebook",
-#     "tensorflow-gpu (Tensorflow 2.8)": "tensorflow-notebook",
-#     "pytorch-gpu (Pytorch 1.10)": "pytorch-notebook"
-# }
-# c.DockerSpawner.remove_containers = True
 
 
 
