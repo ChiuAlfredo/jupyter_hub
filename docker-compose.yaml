@@ -12,7 +12,7 @@ services:
     environment:             # Env variables passed to the Hub process.
       DOCKER_NETWORK_NAME: jupyter_hub
     ports:
-      - 8000:8000
+      - 8000:7000
     restart: unless-stopped  # Configuration for the single-user servers
   jupyterlab:
     image: jupyter/tensorflow-notebook
