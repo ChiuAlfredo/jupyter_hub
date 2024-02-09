@@ -39,6 +39,8 @@ c.MappingKernelManager.cull_idle_timeout = 30 * 60
 #check for idle kernels every two minutes
 c.MappingKernelManager.cull_interval = 2 * 60
 
+# 等待時長
+c.DockerSpawner.start_timeout = 120
 
 
 
