@@ -40,7 +40,8 @@ c.MappingKernelManager.cull_idle_timeout = 30 * 60
 c.MappingKernelManager.cull_interval = 2 * 60
 
 # 等待時長
-c.DockerSpawner.start_timeout = 240
+# c.DockerSpawner.start_timeout = 240
+c.DockerSpawner.http_timeout = 240
 
 
 
