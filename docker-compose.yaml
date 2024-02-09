@@ -14,10 +14,14 @@ services:
     ports:
       - 7000:8000
     restart: unless-stopped  # Configuration for the single-user servers
+    networks:
+      - jupyter_hub_network
 
   jupyterlab:
     image: jupyter/tensorflow-notebook
     command: echo
+    networks:
+      - jupyter_hub_network
     
 volumes:
   jupyterhub_data:
