@@ -17,9 +17,16 @@ services:
     restart: unless-stopped  # Configuration for the single-user servers
     networks:
       - jupyter_hub_network
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: [gpu]
+            count: all  # 使用所有GPU
 
   jupyterlab:
-    image: tensorflow/tensorflow:latest-gpu-jupyter
+    image: tensorflow-notebook:latest
     command: echo
     networks:
       - jupyter_hub_network
