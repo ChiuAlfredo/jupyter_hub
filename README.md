@@ -17,3 +17,11 @@ sudo docker build -t "tensorflow-notebook" ./docker-stacks/images/tensorflow-not
 ```
 docker run -it -p 8888:8888 tensorflow-notebook
 ```
+```
+from tensorflow.python.client import device_lib
+
+# 列出所有的本地机器设备
+local_device_protos = device_lib.list_local_devices()
+# 打印
+print(local_device_protos)
+```
