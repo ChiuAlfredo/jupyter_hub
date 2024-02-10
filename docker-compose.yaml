@@ -19,7 +19,7 @@ services:
       - jupyter_hub_network
 
   jupyterlab:
-    image: tensorflow-notebook:latest
+    image: tensorflow/tensorflow:latest-gpu-jupyter
     command: echo
     networks:
       - jupyter_hub_network
