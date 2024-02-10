@@ -13,3 +13,7 @@ sudo docker build -t "minimal-notebook" ./docker-stacks/images/minimal-notebook
 sudo docker build -t "scipy-notebook" ./docker-stacks/images/scipy-notebook
 sudo docker build -t "tensorflow-notebook" ./docker-stacks/images/tensorflow-notebook
 ```
+
+```
+docker run -it -p 8888:8888 tensorflow-notebook
+```
