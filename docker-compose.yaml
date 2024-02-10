@@ -11,7 +11,6 @@ services:
       - ./jupyterhub-data:/persist
     environment:             # Env variables passed to the Hub process.
       DOCKER_NETWORK_NAME: jupyter_hub
-      DOCKER_NOTEBOOK_IMAGE: tensorflow-notebook:latest
       DOCKER_NOTEBOOK_DIR: /home/jovyan/work
     ports:
       - 7000:8000
@@ -20,7 +19,7 @@ services:
       - jupyter_hub_network
 
   jupyterlab:
-    image: jupyter/tensorflow-notebook
+    image: tensorflow-notebook:latest
     command: echo
     networks:
       - jupyter_hub_network

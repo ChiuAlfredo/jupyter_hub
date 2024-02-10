@@ -13,8 +13,6 @@ c.DockerSpawner.allowed_images = {
     "pytorch-gpu (Pytorch 1.10)": "pytorch-notebook:latest"
 }
 
-# Spawn containers from this image
-c.DockerSpawner.image = os.environ["DOCKER_NOTEBOOK_IMAGE"]
 
 c.DockerSpawner.remove_containers = True
 c.DockerSpawner.extra_host_config = {'runtime': 'nvidia'}
