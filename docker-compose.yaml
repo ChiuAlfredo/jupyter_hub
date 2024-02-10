@@ -11,6 +11,8 @@ services:
       - ./jupyterhub-data:/persist
     environment:             # Env variables passed to the Hub process.
       DOCKER_NETWORK_NAME: jupyter_hub
+      DOCKER_NOTEBOOK_IMAGE: tensorflow-notebook:latest
+      DOCKER_NOTEBOOK_DIR: /home/jovyan/work
     ports:
       - 7000:8000
     restart: unless-stopped  # Configuration for the single-user servers
