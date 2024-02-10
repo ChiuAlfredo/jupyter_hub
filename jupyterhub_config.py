@@ -8,10 +8,10 @@ c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
 c.DockerSpawner.use_internal_ip = True
 c.DockerSpawner.network_name = 'jupyter_hub_network'
 
-# c.DockerSpawner.allowed_images = {
-#     "tensorflow-gpu (Tensorflow 2.8)": "quay.io/jupyter/tensorflow-notebook:latest",
-#     "pytorch-gpu (Pytorch 1.10)": "jupyter/pytorch-notebook"
-# }
+c.DockerSpawner.allowed_images = {
+    "tensorflow-gpu (Tensorflow 2.8)": "tensorflow-notebook:latest",
+    "pytorch-gpu (Pytorch 1.10)": "pytorch-notebook:latest"
+}
 
 # Spawn containers from this image
 c.DockerSpawner.image = os.environ["DOCKER_NOTEBOOK_IMAGE"]
