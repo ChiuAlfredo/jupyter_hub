@@ -9,7 +9,7 @@ c.DockerSpawner.use_internal_ip = True
 c.DockerSpawner.network_name = 'jupyter_hub_network'
 
 c.DockerSpawner.allowed_images = {
-    "tensorflow-gpu (Tensorflow 2.8)": "jupyter/tensorflow-notebook:latest",
+    "tensorflow-gpu (Tensorflow 2.8)": "quay.io/jupyter/tensorflow-notebook:latest",
     "pytorch-gpu (Pytorch 1.10)": "jupyter/pytorch-notebook"
 }
 c.DockerSpawner.remove_containers = True
@@ -62,7 +62,6 @@ c.DockerSpawner.volumes = {'/home/chiu/jupyter_hub/jupyterhub-data/{username}': 
 
 
 # JupyterHub的設定與使用者資料會存在/persist下，以免JupyterHub重啟後全部消失。
-
 c.JupyterHub.cookie_secret_file = '/persist/jupyterhub_cookie_secret'
 c.JupyterHub.db_url = '/persist/jupyterhub.sqlite'
 
