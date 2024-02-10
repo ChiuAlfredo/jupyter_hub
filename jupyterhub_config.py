@@ -9,7 +9,7 @@ c.DockerSpawner.use_internal_ip = True
 c.DockerSpawner.network_name = 'jupyter_hub_network'
 
 c.DockerSpawner.allowed_images = {
-    "tensorflow-gpu (Tensorflow 2.8)": "tensorflow-notebook:latest",
+    "tensorflow-gpu (Tensorflow 2.8)": "tensorflow-notebook",
     "pytorch-gpu (Pytorch 1.10)": "pytorch-notebook:latest"
 }
 
