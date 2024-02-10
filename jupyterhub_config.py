@@ -5,11 +5,12 @@ import shutil
 c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
 
 # 在 jupyterhub_config.py 中
+c.DockerSpawner.use_internal_ip = True
 c.DockerSpawner.network_name = 'jupyter_hub_network'
 
 c.DockerSpawner.allowed_images = {
-    "tensorflow-gpu (Tensorflow 2.8)": "tensorflow-notebook:latest",
-    "pytorch-gpu (Pytorch 1.10)": "pytorch-notebook"
+    "tensorflow-gpu (Tensorflow 2.8)": "jupyter/tensorflow-notebook:latest",
+    "pytorch-gpu (Pytorch 1.10)": "jupyter/pytorch-notebook"
 }
 c.DockerSpawner.remove_containers = True
 c.DockerSpawner.extra_host_config = {'runtime': 'nvidia'}
