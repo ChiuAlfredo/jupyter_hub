@@ -1,8 +1,9 @@
-# 使用Jupyter的基礎Python映像作為起點
-FROM tensorflow/tensorflow:latest-gpu-jupyter
+FROM jupyterhub/jupyterhub
 
-COPY jupyter_server_config.py docker_healthcheck.py /etc/jupyter/
+#Copy the JupyterHub configuration in the container
+COPY jupyterhub_config.py .
 
-# 安裝JupyterLab
-RUN pip install jupyterlab
-
+#Install dependencies (for advanced authentication and spawning)
+RUN pip install dockerspawner
+RUN pip install jupyter-client
+RUN pip install jupyterhub-firstuseauthenticator
