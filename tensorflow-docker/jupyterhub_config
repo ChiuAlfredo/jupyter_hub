@@ -1,5 +1,0 @@
-c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
-c.DockerSpawner.image = 'my-jupyterlab-gpu'
-c.Spawner.default_url = '/lab'  # 启动JupyterLab而不是Notebook界面
-# 为Docker容器启用GPU
-c.DockerSpawner.extra_host_config = {'runtime': 'nvidia'}

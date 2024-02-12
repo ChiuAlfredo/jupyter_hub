@@ -1,39 +1,44 @@
-version: '3'
+# Copyright (c) Jupyter Development Team.
+# Distributed under the terms of the Modified BSD License.
+
+# JupyterHub docker compose configuration file
+version: "3"
 
 services:
-  # Configuration for Hub+Proxy
-  jupyterhub:
-    build: .                # Build the container from this folder
-    container_name: jupyterhub_hub   # The service will use this container name.
-    volumes:                 # Give access to Docker socket.
-      - /var/run/docker.sock:/var/run/docker.sock
-      - jupyterhub_data:/srv/jupyterlab
-      - ./jupyterhub-data:/persist
-    environment:             # Env variables passed to the Hub process.
-      DOCKER_NETWORK_NAME: jupyter_hub
-      DOCKER_NOTEBOOK_DIR: /home/jovyan/work
+  hub:
+    build:
+      context: .
+      dockerfile: Dockerfile.jupyterhub
+      args:
+        JUPYTERHUB_VERSION: latest
+    restart: always
+    image: jupyterhub
+    container_name: jupyterhub
+    networks:
+      - jupyterhub-network
+    volumes:
+      # The JupyterHub configuration file
+      - "./jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py:ro"
+      # Bind Docker socket on the host so we can connect to the daemon from
+      # within the container
+      - "/var/run/docker.sock:/var/run/docker.sock:rw"
+      # Bind Docker volume on host for JupyterHub database and cookie secrets
+      - "jupyterhub-data:/data"
     ports:
-      - 7000:8000
-    restart: unless-stopped  # Configuration for the single-user servers
-    networks:
-      - jupyter_hub_network
-    deploy:
-      resources:
-        reservations:
-          devices:
-          - driver: nvidia
-            capabilities: [gpu]
-            count: all  # 使用所有GPU
+      - "7500:8000"
+    environment:
+      # This username will be a JupyterHub admin
+      JUPYTERHUB_ADMIN: admin
+      # All containers will join this network
+      DOCKER_NETWORK_NAME: jupyterhub-network
+      # JupyterHub will spawn this Notebook image for users
+      DOCKER_NOTEBOOK_IMAGE: quay.io/jupyter/base-notebook:latest
+      # Notebook directory inside user image
+      DOCKER_NOTEBOOK_DIR: /home/jovyan/work
 
-  jupyterlab:
-    image: tensorflow-notebook
-    command: echo
-    networks:
-      - jupyter_hub_network
-    
 volumes:
-  jupyterhub_data:
+  jupyterhub-data:
 
 networks:
-  jupyter_hub_network:
-    driver: bridge
+  jupyterhub-network:
+    name: jupyterhub-network
