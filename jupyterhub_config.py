@@ -14,7 +14,7 @@ c = get_config()  # noqa: F821
 c.JupyterHub.spawner_class = "dockerspawner.DockerSpawner"
 
 # Spawn containers from this image
-c.DockerSpawner.image = os.environ["DOCKER_NOTEBOOK_IMAGE"]
+# c.DockerSpawner.image = os.environ["DOCKER_NOTEBOOK_IMAGE"]
 
 c.DockerSpawner.allowed_images = {'tensorflow' :os.environ["TENSORFLOW_NOTEBOOK_IMAGE"],
                                   'pytorch': os.environ["PYTORCH_NOTEBOOK_IMAGE"],
