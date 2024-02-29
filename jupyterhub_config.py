@@ -17,8 +17,8 @@ c.JupyterHub.spawner_class = "dockerspawner.DockerSpawner"
 # c.DockerSpawner.image = os.environ["DOCKER_NOTEBOOK_IMAGE"]
 
 c.DockerSpawner.allowed_images = {
-     "tensorflow-gpu": "tensorflow-notebook",
-     "pytorch-gpu (Tensorflow 2.8)": "pytorch-notebook",
+     "tensorflow-gpu": os.environ["TENSORFLOW_NOTEBOOK_IMAGE"],
+     "pytorch-gpu (Tensorflow 2.8)": os.environ["PYTORCH_NOTEBOOK_IMAGE"],
  }
 
 c.DockerSpawner.remove_containers = True
