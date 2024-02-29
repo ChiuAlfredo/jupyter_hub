@@ -14,17 +14,7 @@ c = get_config()  # noqa: F821
 c.JupyterHub.spawner_class = "dockerspawner.DockerSpawner"
 
 # Spawn containers from this image
-c.DockerSpawner.image = os.environ["TENSORFLOW_NOTEBOOK_IMAGE"]
-
-# c.DockerSpawner.allowed_images = {
-#      "tensorflow-gpu": os.environ["TENSORFLOW_NOTEBOOK_IMAGE"],
-#      "pytorch-gpu (Tensorflow 2.8)": os.environ["PYTORCH_NOTEBOOK_IMAGE"],
-#  }
-
-c.DockerSpawner.remove_containers = True
-c.DockerSpawner.extra_host_config = {'runtime': 'nvidia'}
-c.Spawner.environment = {'GRANT_SUDO': 'yes'}
-c.Spawner.default_url = '/lab'
+c.DockerSpawner.image = os.environ["DOCKER_NOTEBOOK_IMAGE"]
 
 # Connect containers to this Docker network
 network_name = os.environ["DOCKER_NETWORK_NAME"]

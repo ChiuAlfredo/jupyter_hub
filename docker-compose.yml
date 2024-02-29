@@ -32,8 +32,7 @@ services:
       # All containers will join this network
       DOCKER_NETWORK_NAME: jupyterhub-network
       # JupyterHub will spawn this Notebook image for users
-      TENSORFLOW_NOTEBOOK_IMAGE: tensorflow-notebook
-      PYTORCH_NOTEBOOK_IMAGE: pytorch-notebook
+      DOCKER_NOTEBOOK_IMAGE: tensorflow-notebook
       # Notebook directory inside user image
       DOCKER_NOTEBOOK_DIR: /home/jovyan/work
     deploy:
