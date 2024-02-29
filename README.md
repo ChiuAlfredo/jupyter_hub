@@ -33,3 +33,9 @@ local_device_protos = device_lib.list_local_devices()
 # 打印
 print(local_device_protos)
 ```
+```
+ import torch   
+torch.__version__
+ '1.8.0'   
+torch.cuda.is_available()
+```
