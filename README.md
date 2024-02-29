@@ -16,10 +16,10 @@ sudo docker build -t "tensorflow-notebook" ./tensorflow-notebook
 sudo docker build -t "pytorch-notebook" ./pytorch-notebook
 ```
 
-```
+<!-- ```
 docker run --gpus all -it -p 8888:8888 tensorflow-notebook
 docker run --gpus all -it -p 7777:8888 pytorch-notebook
-```
+``` -->
 # 啟動jupyterhub
 ```
 docker-compose build
