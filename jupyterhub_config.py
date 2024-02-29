@@ -13,10 +13,13 @@ c = get_config()  # noqa: F821
 # Spawn single-user servers as Docker containers
 c.JupyterHub.spawner_class = "dockerspawner.DockerSpawner"
 
-# # Spawn containers from this image
-# c.DockerSpawner.image = os.environ["DOCKER_NOTEBOOK_IMAGE"]
+# Spawn containers from this image
+c.DockerSpawner.image = os.environ["PYTORCH_NOTEBOOK_IMAGE"]
 
-c.DockerSpawner.allowed_images = "*"
+# c.DockerSpawner.allowed_images = {
+#      "tensorflow-gpu": os.environ["TENSORFLOW_NOTEBOOK_IMAGE"],
+#      "pytorch-gpu (Tensorflow 2.8)": os.environ["PYTORCH_NOTEBOOK_IMAGE"],
+#  }
 
 c.DockerSpawner.remove_containers = True
 c.DockerSpawner.extra_host_config = {'runtime': 'nvidia'}
