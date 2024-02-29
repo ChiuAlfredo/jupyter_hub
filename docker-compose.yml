@@ -33,6 +33,8 @@ services:
       DOCKER_NETWORK_NAME: jupyterhub-network
       # JupyterHub will spawn this Notebook image for users
       DOCKER_NOTEBOOK_IMAGE: tensorflow-notebook
+      TENSORFLOW_NOTEBOOK_IMAGE: tensorflow-notebook
+      PYTORCH_NOTEBOOK_IMAGE: pytorch-notebook
       # Notebook directory inside user image
       DOCKER_NOTEBOOK_DIR: /home/jovyan/work
     deploy:

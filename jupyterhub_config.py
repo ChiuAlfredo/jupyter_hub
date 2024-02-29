@@ -16,6 +16,10 @@ c.JupyterHub.spawner_class = "dockerspawner.DockerSpawner"
 # Spawn containers from this image
 c.DockerSpawner.image = os.environ["DOCKER_NOTEBOOK_IMAGE"]
 
+c.DockerSpawner.allowed_images = {'tensorflow' :os.environ["TENSORFLOW_NOTEBOOK_IMAGE"],
+                                  'pytorch': os.environ["PYTORCH_NOTEBOOK_IMAGE"],
+                                }
+
 # Connect containers to this Docker network
 network_name = os.environ["DOCKER_NETWORK_NAME"]
 c.DockerSpawner.use_internal_ip = True
